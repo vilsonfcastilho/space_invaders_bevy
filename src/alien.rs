@@ -46,7 +46,7 @@ fn setup_aliens(
                 SpriteBundle {
                     transform: Transform::from_translation(position)
                         // The splat just create a vector with 3 of the same value
-                        .with_scale(Vec3::splat(resolution.player_ratio)),
+                        .with_scale(Vec3::splat(resolution.pixel_ratio)),
                     texture: alien_texture.clone(),
                     ..Default::default()
                 },

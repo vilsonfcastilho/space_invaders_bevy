@@ -37,7 +37,9 @@ fn setup_player(
 }
 
 fn update_player(
+    mut commands: Commands,
     mut player_query: Query<(&mut Player, &mut Transform)>,
+    asset_server: Res<AssetServer>,
     time: Res<Time>,
     keys: Res<ButtonInput<KeyCode>>,
     resolution: Res<Resolution>,
@@ -45,7 +47,6 @@ fn update_player(
     let (mut player, mut transform) = player_query.single_mut();
 
     let mut horizontal: f32 = 0.0;
-
     if keys.pressed(KeyCode::KeyA) || keys.pressed(KeyCode::ArrowLeft) {
         horizontal += -1.0;
     }
@@ -69,5 +70,21 @@ fn update_player(
 
     player.shoot_timer -= time.delta_seconds();
 
-    if keys.pressed(KeyCode::Space) && player.shoot_timer < 0.0 {}
+    if keys.pressed(KeyCode::Space) && player.shoot_timer < 0.0 {
+        player.shoot_timer = PLAYER_SHOOT_COOLDOWN;
+
+        let bullet_texture: Handle<Image> = asset_server.load("bullet.png");
+
+        commands.spawn((
+            SpriteBundle {
+                texture: bullet_texture,
+                transform: Transform::from_translation(transform.translation)
+                    .with_scale(Vec3::splat(resolution.pixel_ratio)),
+                ..Default::default()
+            },
+            Projectile {
+                speed: PROJECTILE_BULLET_SPEED,
+            },
+        ));
+    }
 }

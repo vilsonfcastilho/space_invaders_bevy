@@ -4,7 +4,12 @@ pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins((ResolutionPlugin, AlienPlugin, PlayerPlugin));
+        app.add_plugins((
+            ResolutionPlugin,
+            AlienPlugin,
+            PlayerPlugin,
+            ProjectilePlugin,
+        ));
         app.add_systems(Startup, setup_scene);
     }
 }

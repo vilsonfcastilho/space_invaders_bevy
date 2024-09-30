@@ -19,7 +19,7 @@ fn setup_player(
     asset_server: Res<AssetServer>,
     resolution: Res<Resolution>,
 ) {
-    let player_image: Handle<Image> = asset_server.load("player.png");
+    let player_image: Handle<Image> = asset_server.load("resources/player.png");
 
     commands.spawn((
         SpriteBundle {
@@ -73,7 +73,7 @@ fn update_player(
     if keys.pressed(KeyCode::Space) && player.shoot_timer < 0.0 {
         player.shoot_timer = PLAYER_SHOOT_COOLDOWN;
 
-        let bullet_texture: Handle<Image> = asset_server.load("bullet.png");
+        let bullet_texture: Handle<Image> = asset_server.load("resources/bullet.png");
 
         commands.spawn((
             SpriteBundle {

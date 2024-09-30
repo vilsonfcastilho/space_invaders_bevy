@@ -43,7 +43,7 @@ fn setup_aliens(
         reset: false,
     });
 
-    let alien_texture: Handle<Image> = asset_server.load("alien.png");
+    let alien_texture: Handle<Image> = asset_server.load("resources/alien.png");
 
     for x in 0..ALIEN_COLUMNS {
         for y in 0..ALIEN_ROWS {

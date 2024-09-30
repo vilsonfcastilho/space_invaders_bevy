@@ -2,6 +2,7 @@ mod alien;
 mod config;
 mod game;
 mod player;
+mod projectile;
 mod resolution;
 
 mod prelude {
@@ -11,6 +12,7 @@ mod prelude {
     pub use crate::config::*;
     pub use crate::game::*;
     pub use crate::player::*;
+    pub use crate::projectile::*;
     pub use crate::resolution::*;
 }
 
